@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { Keyboard, TextInput, TouchableWithoutFeedback, View } from 'react-native';
+import React, { useContext, useState } from 'react';
 import styled from 'styled-components/native';
 
 import { Background } from '../../components/shared/Background';
 import { Button } from '../../components/shared/Button';
 import { DismissKeyboardView } from '../../components/shared/DissmissKeyboardView';
+import AppContext from '../../context/AppContext';
 
 const Container = styled.View`
     display: flex;
@@ -32,8 +32,19 @@ const Input = styled.TextInput`
     font-size: 18px;
 `;
 
+const Text = styled.Text`
+`;
 
 const Home = () => {
+    
+    const [player, setPlayerToAdd] = useState('');
+    const { players, setPlayers } = useContext(AppContext);
+
+    const handlePlayerAdd = () => {
+        setPlayers([...players, player]);
+        setPlayerToAdd('');
+    }
+
     return (
         <Background>
             <DismissKeyboardView>
@@ -41,10 +52,15 @@ const Home = () => {
 
                     <Header>
                         <SearchBar>
-                            <Input />
-                            <Button title="Adicionar" />
+                            <Input 
+                                onChangeText={setPlayerToAdd}
+                                value={player}
+                            />
+                            <Button title="Adicionar" onPress={handlePlayerAdd} />
                         </SearchBar>
                     </Header>
+
+                    <Text>{JSON.stringify(players)}</Text>
 
                 </Container>
             </DismissKeyboardView>
