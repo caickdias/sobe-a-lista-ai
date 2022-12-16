@@ -7,7 +7,7 @@ const Container = styled.TouchableOpacity`
 `;
 
 const Title = styled.Text`
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
     color: #273c75;
 `;
