@@ -4,6 +4,6 @@ export const styles = StyleSheet.create({
     container: {
         display: 'flex',
         flex: 1,
-        backgroundColor: '#40739e',
+        backgroundColor: '#273c75',
     }
 })
