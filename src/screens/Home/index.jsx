@@ -43,7 +43,10 @@ const Text = styled.Text`
 `;
 
 const Body = styled.View`
-    padding: 20px 10px;
+    flex: 1;
+    padding: 0px 10px;
+    padding-top: 10px;
+    justify-content: space-between;
 `
 const Label = styled.Text`
     font-size: 20px;
@@ -59,10 +62,19 @@ const Card = styled.View`
     padding: 0px 10px;
     margin-bottom: 10px;    
     width: 100%;
-    height: 55px;
+    height: 50px;
     padding-top: 10px;    
     border-bottom-width: 1px;
     border-color: #bdc3c7;
+`
+
+const Footer = styled.View`
+    display: flex;    
+    border-top-width: 1px;        
+    border-color: #bdc3c7;
+    align-items: center;
+    justify-content: center;
+    width: 100%;    
 `
 
 const CardText = styled.Text`
@@ -121,7 +133,7 @@ const Home = () => {
                                     >
                                         <Feather 
                                             name="x"
-                                            size={28}
+                                            size={24}
                                             color="red"
                                         />
                                     </TouchableOpacity>
@@ -130,7 +142,11 @@ const Home = () => {
                                 </Card>
                             )}                        
                         />      
+                    <Footer>
+                        <Button title="Iniciar" />
+                    </Footer>
                     </Body>
+
 
                 </Container>
             </DismissKeyboardView>
