@@ -72,7 +72,7 @@ const CardText = styled.Text`
 const Home = () => {
     
     const [player, setPlayerToAdd] = useState('');
-    const { players, addPlayer } = useContext(AppContext);
+    const { players, addPlayer, deletePlayer } = useContext(AppContext);
 
     const handlePlayerAdd = () => {
         addPlayer(player);
@@ -105,7 +105,10 @@ const Home = () => {
                                 <Card>
                                     <CardText>{`${index+1}. ${item}`}</CardText>
                                     
-                                    <TouchableOpacity style={{ padding: 10 }}>
+                                    <TouchableOpacity 
+                                        style={{ padding: 10 }}
+                                        onPress={() => deletePlayer(item)}
+                                    >
                                         <Feather 
                                             name="x"
                                             size={28}

@@ -10,8 +10,13 @@ const AppProvider = ({ children }) => {
         setPlayers([...players, player])
     }
 
+    const deletePlayer = name => {
+        const updatedPlayers = players.filter(player => player != name);
+        setPlayers(updatedPlayers);
+    }
+
     return(
-        <AppContext.Provider value={{ players, addPlayer }}>
+        <AppContext.Provider value={{ players, addPlayer, deletePlayer }}>
             {children}
         </AppContext.Provider>
     )
