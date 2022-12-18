@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { TouchableOpacity } from 'react-native';
 import { FlatList } from 'react-native';
 import styled from 'styled-components/native';
@@ -9,6 +9,8 @@ import { Background } from '../../components/shared/Background';
 import { Button } from '../../components/shared/Button';
 import { DismissKeyboardView } from '../../components/shared/DissmissKeyboardView';
 import AppContext from '../../context/AppContext';
+
+import * as DB from '../../services/db';
 
 const Container = styled.View`
     display: flex;
@@ -72,12 +74,20 @@ const CardText = styled.Text`
 const Home = () => {
     
     const [player, setPlayerToAdd] = useState('');
-    const { players, addPlayer, deletePlayer } = useContext(AppContext);
+    const { players, setPlayers, addPlayer, deletePlayer } = useContext(AppContext);
 
     const handlePlayerAdd = () => {
         addPlayer(player);
         setPlayerToAdd('');
     }
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const list = await DB.loadList();        
+            setPlayers(list);
+        }
+        fetchData();
+    },[]);
 
     return (
         <Background>
