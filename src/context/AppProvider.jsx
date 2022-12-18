@@ -6,8 +6,12 @@ const AppProvider = ({ children }) => {
 
     const [players, setPlayers] = useState([]);
 
+    const addPlayer = player => {
+        setPlayers([...players, player])
+    }
+
     return(
-        <AppContext.Provider value={{ players, setPlayers }}>
+        <AppContext.Provider value={{ players, addPlayer }}>
             {children}
         </AppContext.Provider>
     )

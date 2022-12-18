@@ -1,6 +1,9 @@
 import React, { useContext, useState } from 'react';
+import { TouchableOpacity } from 'react-native';
 import { FlatList } from 'react-native';
 import styled from 'styled-components/native';
+
+import { Feather } from '@expo/vector-icons';
 
 import { Background } from '../../components/shared/Background';
 import { Button } from '../../components/shared/Button';
@@ -48,16 +51,20 @@ const Label = styled.Text`
 
 const Card = styled.View`
     display: flex;
-    justify-content: center;    
+    flex-direction: row;
+    justify-content: space-between;    
+    align-items: center;
+    padding: 0px 10px;
+    margin-bottom: 10px;    
     width: 100%;
-    height: 60px;
-    padding-top: 10px;
-    
+    height: 55px;
+    padding-top: 10px;    
     border-bottom-width: 1px;
     border-color: #bdc3c7;
 `
 
 const CardText = styled.Text`
+    width: 50%;    
     font-size: 18px;
     color: #273c75;
 `
@@ -65,10 +72,10 @@ const CardText = styled.Text`
 const Home = () => {
     
     const [player, setPlayerToAdd] = useState('');
-    const { players, setPlayers } = useContext(AppContext);
+    const { players, addPlayer } = useContext(AppContext);
 
     const handlePlayerAdd = () => {
-        setPlayers([...players, player]);
+        addPlayer(player);
         setPlayerToAdd('');
     }
 
@@ -97,6 +104,16 @@ const Home = () => {
                             renderItem={({ item, index }) => (
                                 <Card>
                                     <CardText>{`${index+1}. ${item}`}</CardText>
+                                    
+                                    <TouchableOpacity style={{ padding: 10 }}>
+                                        <Feather 
+                                            name="x"
+                                            size={28}
+                                            color="red"
+                                        />
+                                    </TouchableOpacity>
+
+                                    
                                 </Card>
                             )}                        
                         />      
